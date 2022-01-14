@@ -20,11 +20,11 @@ const styles = StyleSheet.create({
       backgroundColor: '#3855E9',
       borderColor: '#FFFAF0',
       borderWidth: 1,
-      width: 20,
-      height: 20,
+      width: 22,
+      height: 22,
       alignItems: 'center',
       justifyContent: 'center',
-      borderRadius: 10,
+      borderRadius: 15,
       position: 'absolute',
       left: 55,
       top: 5,
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
       color: 'white',
     },
-    Name: {
+    NameText: {
       fontWeight: 'bold',
       fontSize: 18,
       color: 'white',
