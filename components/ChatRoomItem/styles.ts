@@ -1,38 +1,4 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-
-
-interface Props {
-    imageUri : string,
-    unreadMessages : string,
-    lastMessage : string,
-    lastMessageTime: string,
-    name: string, 
-    userName: string,
-    children: React.ReactNode
-}
-
-export default function ChatRoomItem({ imageUri, unreadMessages, lastMessage, lastMessageTime, name, userName } : Props) {
-    return (
-        <View style={styles.UserContainer}> 
-          <Image style={styles.Image} source={ {uri: imageUri} }></Image>
-          <View style={styles.BadgeContainer}>
-            <Text style={styles.BadgeText}>{unreadMessages}</Text>
-          </View>
-          <View style={styles.UserInfoContainer}>
-            <View style={styles.FirstRow}> 
-              <Text style={styles.Name}>{name}</Text>
-              <Text style={styles.NormalText}>{userName}</Text>
-            </View>
-            <View style={styles.LastMessageAndTime}>
-              <Text numberOfLines={1} ellipsizeMode={'middle'} style={styles.Message}>{lastMessage}</Text>
-              <Text style={styles.Time}>{lastMessageTime}</Text>
-            </View>
-          </View>
-        </View>
-      );
-};
-
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     UserContainer: {
@@ -108,4 +74,6 @@ const styles = StyleSheet.create({
       marginLeft: 5,
       color: 'white',
     },
-  });
+});
+
+export default styles;
