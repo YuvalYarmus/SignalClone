@@ -1,10 +1,12 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
-import ChatRoomItem from '../components/ChatRoomItem';
 import { RootTabScreenProps } from '../types';
+
+import ChatRoomItem from '../components/ChatRoomItem';
+import chatRoomsData from '../dummy-data/ChatRooms'
+const chatRoom1 = chatRoomsData[0];
+const chatRoom2 = chatRoomsData[2];
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
