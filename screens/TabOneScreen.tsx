@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, FlatList} from 'react-native';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
@@ -12,10 +12,13 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
   return (
    
     <View style={styles.Page}>
-      <ChatRoomItem chatRoom={chatRoom1} />
-      <ChatRoomItem chatRoom={chatRoom2} />
-      
 
+      <FlatList 
+      data = {chatRoomsData}
+      renderItem = {({item, index}) => <ChatRoomItem chatRoom={item}/>}
+      showsVerticalScrollIndicator={true}
+      />
+    
     </View>
 
   );
