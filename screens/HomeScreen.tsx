@@ -11,7 +11,7 @@ const chatRoom2 = chatRoomsData[1];
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   return (
    
-    <View style={styles.Page}>
+    <View style={styles.page}>
 
       <FlatList 
       data = {chatRoomsData}
@@ -25,7 +25,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 }
 
 const styles = StyleSheet.create({
-  Page: {
+  page: {
     flex: 1,
     flexDirection: 'column',
   },
