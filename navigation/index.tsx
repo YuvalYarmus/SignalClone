@@ -3,12 +3,12 @@
  * https://reactnavigation.org/docs/getting-started
  *
  */
-import { FontAwesome } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import { ColorSchemeName, Image, Pressable, useWindowDimensions } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -34,6 +34,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
  * https://reactnavigation.org/docs/modal
  */
 import ChatRoomScreen from '../screens/ChatRoomScreen';
+import HomeScreen from '../screens/HomeScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -42,16 +43,103 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       {/* a custom page I want to load */}
-      <Stack.Screen name="ChatRoom" component={ChatRoomScreen} options={{ headerShown: true, title: "The Chat" }} />
+      <Stack.Group>
+        <Stack.Screen name="Home" component={HomeScreen}
+        options={{ headerTitle : HomeHeader }} />
+        <Stack.Screen name="ChatRoom" component={ChatRoomScreen}
+        options={{ headerTitle : ChatRoomHeader }} />
+        <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      </Stack.Group>
 
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: true }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      {/* <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: true }} /> */}
+      
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
 }
+
+import { Text, View, StyleSheet } from 'react-native'
+const ChatRoomHeader = (props) => {
+  let myWidth = useWindowDimensions().width;
+  myWidth *= 0.81;
+  return (
+    <View style={[styles2.Container, {width : myWidth}]}>
+      <Image style={styles2.Image} source={ {uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg'} }></Image>
+      <Text style={styles2.Text}>{props.children}</Text>
+      <View style={{padding: 5, marginRight: 15, flexDirection: 'row'}}>
+        <Feather style={styles2.Icon} name="camera" size={24} />
+        
+      </View>
+    </View>
+  );
+};
+const HomeHeader = () => {
+  let myWidth = useWindowDimensions().width;
+  // myWidth *= 0.9;
+  return (
+    <View style={[styles1.Container, {width : myWidth}]}>
+      <Image style={styles1.Image} source={ {uri: 'https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/vadim.jpg'} }></Image>
+      <Text style={styles1.Text}>Home</Text>
+      <View style={{padding: 5, marginRight: 15, flexDirection: 'row'}}>
+        <Feather style={styles1.Icon} name="camera" size={24}  />
+        <Feather style={styles1.Icon} name="edit-2" size={24}  />
+      </View>
+    </View>
+  );
+};
+
+const styles1 = StyleSheet.create({
+  Image: {
+    width: 30,
+    height: 30,
+    borderRadius: 30,
+  },
+  Icon: {
+    marginHorizontal:10,
+    color: 'gray',
+  },
+  Text: {
+    textAlign: 'center',
+    flex: 1,
+    marginLeft: 60,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  Container: {
+    // backgroundColor: 'gray',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 5,
+  },
+});
+const styles2 = StyleSheet.create({
+  Image: {
+    width: 30,
+    height: 30,
+    borderRadius: 30,
+  },
+  Icon: {
+    marginHorizontal:10,
+    color: 'gray',
+  },
+  Text: {
+    textAlign: 'left',
+    flex: 1,
+    marginLeft: 10,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  Container: {
+    // backgroundColor: 'gray',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 5,
+  },
+});
 
 /**
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.

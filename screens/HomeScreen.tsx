@@ -15,7 +15,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
 
       <FlatList 
       data = {chatRoomsData}
-      renderItem = {({item, index}) => <ChatRoomItem chatRoom={item}/>}
+      renderItem = {({item, index}) => <ChatRoomItem chatRoomItem={item}/>}
       showsVerticalScrollIndicator={true}
       />
     
